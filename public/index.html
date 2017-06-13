@@ -4,8 +4,15 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>Surf Snap</title>
-
     <!-- update the version number as needed -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+    <!-- bootstrap -->
+    <!-- Latest compiled and minified CSS -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+    <!-- Optional theme -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap-theme.min.css" integrity="sha384-rHyoN1iRsVXV4nD0JutlnGaslCJuC7uwjduW9SVrLvRYooPp2bWYgmgJQIXwl/Sp" crossorigin="anonymous">
+    <!-- Latest compiled and minified JavaScript -->
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
     <script defer src="/__/firebase/4.1.2/firebase-app.js"></script>
     <!-- include only the Firebase features as you need -->
     <script defer src="/__/firebase/4.1.2/firebase-auth.js"></script>
@@ -23,17 +30,67 @@
         -o-background-size: cover;
         background-size: cover;
       }
-      h1 {
-        color: purple;
+      h1, h3 {
+        color: #6a8a98;
+      }
+      h2 {
+        color: black;
+      }
+      .dropdown-menu {
+        padding: 10%;
+        background-color: #484848;
       }
     </style>
   </head>
 
   <body>
-  <div class="header">
-    <h1>Surf Snap</h1>
-    <h2>Connecting Local Surfers with Local Photographers</h2>
+  <div class="navbar navbar-inverse">
+    <div class="container">
+      <h1>SurfSnap</h1>
+      <h3>Connecting Local San Diego Surfers with Photographers</h3>
+    </div>
+  </div>
   </header>
+  
+<div class="container">
+<div class="btn-group">
+  <button type="button" class="btn btn-info btn-lg dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+    North County</br>
+  </button>
+  <div class="dropdown-menu">
+    <button type="button" class="btn btn-info" href="#">Oceanside</button></br></br>
+    <button type="button" class="btn btn-info" href="#">Tamarack</button></br></br>
+    <button type="button" class="btn btn-info" href="#">Ponto</button></br></br>
+    <button type="button" class="btn btn-info" href="#">Grandview</button></br></br>
+    <button type="button" class="btn btn-info" href="#">Beacons</button></br></br>
+    <button type="button" class="btn btn-info" href="#">Swamis</button></br></br>
+    <button type="button" class="btn btn-info" href="#">Pipes</button></br></br>
+    <button type="button" class="btn btn-info" href="#">Cardiff</button></br></br>
+    <button type="button" class="btn btn-info" href="#">Ocean Beach</button></br></br>
+    <button type="button" class="btn btn-info" href="#">Del Mar</button></br></br>
+  </div>
+</div>
+</div></br>
+
+<div class="container">
+<div class="btn-group">
+  <button type="button" class="btn btn-info btn-lg dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+    South County</br>
+  </button>
+  <div class="dropdown-menu">
+    <button type="button" class="btn btn-info">Torrey Pines State Beach</button></br></br>
+    <button type="button" class="btn btn-info">Blacks</button></br></br>
+    <button type="button" class="btn btn-info">Scripps</button></br></br>
+    <button type="button" class="btn btn-info">WindanSea</button></br></br>
+    <button type="button" class="btn btn-info">BirdRock</button></br></br>
+    <button type="button" class="btn btn-info">PB Point</button></br></br>
+    <button type="button" class="btn btn-info">Old Man's</button></br></br>
+    <button type="button" class="btn btn-info">Tower 23</button></br></br>
+    <button type="button" class="btn btn-info">Ocean Beach</button></br></br>
+    <button type="button" class="btn btn-info">Sunset Cliffs</button></br></br>
+  </div>
+</div>
+</div>
 
 <script src="https://www.gstatic.com/firebasejs/4.1.1/firebase-app.js"></script>
 <script src="https://www.gstatic.com/firebasejs/4.1.1/firebase-auth.js"></script>
