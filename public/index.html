@@ -3,7 +3,7 @@
   <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>Surf Snap</title>
+    <title>SurfSnap</title>
     <!-- update the version number as needed -->
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
     <!-- bootstrap -->
@@ -21,119 +21,159 @@
     <script defer src="/__/firebase/4.1.2/firebase-storage.js"></script>
     <!-- initialize the SDK after all desired features are loaded -->
     <script defer src="/__/firebase/init.js"></script>
-
+    <!-- fonts -->
+    <link href="https://fonts.googleapis.com/css?family=Lora|Montserrat" rel="stylesheet">
     <style media="screen">
       body { 
-        background: url(http://imgur.com/ttSx1QT.gif) no-repeat center center fixed; 
+        background: url(http://imgur.com/kmaOo08.gif) no-repeat center center fixed; 
         -webkit-background-size: cover;
         -moz-background-size: cover;
         -o-background-size: cover;
         background-size: cover;
       }
-      h1, h3 {
-        color: #6a8a98;
+      h1, h2 {
+        color: #2aabd2;
+        font-family: 'Montserrat', sans-serif;
       }
-      h2 {
+      h3 {
         color: black;
+        font-family: 'Lora', serif;
+        font-size: 17px;
+        font-style: italic;
       }
       .dropdown-menu {
-        padding: 10%;
-        background-color: #484848;
+        font-family: 'Lora', serif;
+      }
+      #li {
+        font-family: 'Lora', serif;
+        font-style: italic;
+      }
+      .btn-group {
+        font-family: 'Montserrat', sans-serif;
+      }
+      #firebaseui-auth-container {
+        text-align: center;
       }
     </style>
-  </head>
-
-  <body>
-  <div class="navbar navbar-inverse">
-    <div class="container">
-      <h1>SurfSnap</h1>
-      <h3>Connecting Local San Diego Surfers with Photographers</h3>
-    </div>
-  </div>
-  </header>
-  
-<div class="container">
-<div class="btn-group">
-  <button type="button" class="btn btn-info btn-lg dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-    North County</br>
-  </button>
-  <div class="dropdown-menu">
-    <button type="button" class="btn btn-info" href="#">Oceanside</button></br></br>
-    <button type="button" class="btn btn-info" href="#">Tamarack</button></br></br>
-    <button type="button" class="btn btn-info" href="#">Ponto</button></br></br>
-    <button type="button" class="btn btn-info" href="#">Grandview</button></br></br>
-    <button type="button" class="btn btn-info" href="#">Beacons</button></br></br>
-    <button type="button" class="btn btn-info" href="#">Swamis</button></br></br>
-    <button type="button" class="btn btn-info" href="#">Pipes</button></br></br>
-    <button type="button" class="btn btn-info" href="#">Cardiff</button></br></br>
-    <button type="button" class="btn btn-info" href="#">Ocean Beach</button></br></br>
-    <button type="button" class="btn btn-info" href="#">Del Mar</button></br></br>
-  </div>
-</div>
-</div></br>
-
-<div class="container">
-<div class="btn-group">
-  <button type="button" class="btn btn-info btn-lg dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-    South County</br>
-  </button>
-  <div class="dropdown-menu">
-    <button type="button" class="btn btn-info">Torrey Pines State Beach</button></br></br>
-    <button type="button" class="btn btn-info">Blacks</button></br></br>
-    <button type="button" class="btn btn-info">Scripps</button></br></br>
-    <button type="button" class="btn btn-info">WindanSea</button></br></br>
-    <button type="button" class="btn btn-info">BirdRock</button></br></br>
-    <button type="button" class="btn btn-info">PB Point</button></br></br>
-    <button type="button" class="btn btn-info">Old Man's</button></br></br>
-    <button type="button" class="btn btn-info">Tower 23</button></br></br>
-    <button type="button" class="btn btn-info">Ocean Beach</button></br></br>
-    <button type="button" class="btn btn-info">Sunset Cliffs</button></br></br>
-  </div>
-</div>
-</div>
-
-<script src="https://www.gstatic.com/firebasejs/4.1.1/firebase-app.js"></script>
-<script src="https://www.gstatic.com/firebasejs/4.1.1/firebase-auth.js"></script>
-<script src="https://www.gstatic.com/firebasejs/4.1.1/firebase-database.js"></script>
-<script src="https://www.gstatic.com/firebasejs/4.1.1/firebase-messaging.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/4.1.2/firebase.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/4.1.1/firebase-app.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/4.1.1/firebase-auth.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/4.1.1/firebase-database.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/4.1.1/firebase-messaging.js"></script>
 
 <!-- Leave out Storage -->
 <!-- <script src="https://www.gstatic.com/firebasejs/4.1.1/firebase-storage.js"></script> -->
 
-<script>
-  var config = {
-      // Initialize Firebase
-      var config = {
-        apiKey: "AIzaSyDqWAslVfHkcwzB2FOFPnMNF4FGSimP6ic",
-        authDomain: "surfsnap-ab8c8.firebaseapp.com",
-        databaseURL: "https://surfsnap-ab8c8.firebaseio.com",
-        projectId: "surfsnap-ab8c8",
-        storageBucket: "surfsnap-ab8c8.appspot.com",
-        messagingSenderId: "190116652796"
-  };
-  firebase.initializeApp(config);
-</script>
-    <script>
-      document.addEventListener('DOMContentLoaded', function() {
-        // // 🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥
-        // // The Firebase SDK is initialized and available here!
-        //
-        // firebase.auth().onAuthStateChanged(user => { });
-        // firebase.database().ref('/path/to/ref').on('value', snapshot => { });
-        // firebase.messaging().requestPermission().then(() => { });
-        // firebase.storage().ref('/path/to/ref').getDownloadURL().then(() => { });
-        //
-        // // 🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥
-
-        try {
-          let app = firebase.app();
-          let features = ['auth', 'database', 'messaging', 'storage'].filter(feature => typeof app[feature] === 'function');
-          document.getElementById('load').innerHTML = `Firebase SDK loaded with ${features.join(', ')}`;
-        } catch (e) {
-          console.error(e);
-          document.getElementById('load').innerHTML = 'Error loading the Firebase SDK, check the console.';
+<!-- TO DO -->
+<!-- organize photos by date, chronological
+find specific photographers via instagram, display their posts -->
+<!-- #surfsnapblacksbeach, instagram api research -->
+<!-- https://www.imagemagick.org/script/index.php  watermark -->
+<!-- firebase storage? -->
+<!-- payments? , shopping cart, paypal, photographer sets price, photographer + surfer profile register -->
+<!-- organize temporary unique url, download the photographs they want, expire in 48 hours or use unique password
+terms and conditions for photographs and surfers -->
+  <script>
+    // Initialize Firebase
+    var config = {
+      apiKey: "AIzaSyDqWAslVfHkcwzB2FOFPnMNF4FGSimP6ic",
+      authDomain: "surfsnap-ab8c8.firebaseapp.com",
+      databaseURL: "https://surfsnap-ab8c8.firebaseio.com",
+      projectId: "surfsnap-ab8c8",
+      storageBucket: "surfsnap-ab8c8.appspot.com",
+      messagingSenderId: "190116652796"
+    };
+    firebase.initializeApp(config);
+  </script>
+  <script src="https://cdn.firebase.com/libs/firebaseui/2.2.1/firebaseui.js"></script>
+      <link type="text/css" rel="stylesheet" href="https://cdn.firebase.com/libs/firebaseui/2.2.1/firebaseui.css" />
+  <script type="text/javascript">
+    // FirebaseUI config.
+  var uiConfig = {
+    // Url to redirect to after a successful sign-in.
+    'signInSuccessUrl': 'loggedIn.html',
+    'callbacks': {
+      'signInSuccess': function(user, credential, redirectUrl) {
+        if (window.opener) {
+          // The widget has been opened in a popup, so close the window
+          // and return false to not redirect the opener.
+          window.close();
+          return false;
+        } else {
+          // The widget has been used in redirect mode, so we redirect to the signInSuccessUrl.
+          return true;
         }
-      });
+      }
+    },
+    'signInOptions': [
+      firebase.auth.GoogleAuthProvider.PROVIDER_ID,
+      firebase.auth.EmailAuthProvider.PROVIDER_ID,
+      {
+        provider: firebase.auth.PhoneAuthProvider.PROVIDER_ID,
+        recaptchaParameters: {
+          size: getRecaptchaMode()
+        }
+      }
+    ],
+    // Terms of service url.
+    'tosUrl': 'https://www.google.com'
+  };
+  // Initialize the FirebaseUI Widget using Firebase.
+  var ui = new firebaseui.auth.AuthUI(firebase.auth());
+  // The start method will wait until the DOM is loaded to include the FirebaseUI sign-in widget
+  // within the element corresponding to the selector specified.
+  ui.start('#firebaseui-auth-container', uiConfig);
+</script>
+</head>
+
+<!-- //   document.addEventListener('DOMContentLoaded', function() {
+//     // // 🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥
+//     // // The Firebase SDK is initialized and available here!
+//     //
+//     // firebase.auth().onAuthStateChanged(user => { });
+//     // firebase.database().ref('/path/to/ref').on('value', snapshot => { });
+//     // firebase.messaging().requestPermission().then(() => { });
+//     // firebase.storage().ref('/path/to/ref').getDownloadURL().then(() => { });
+//     //
+//     // // 🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥
+
+//     try {
+//       let app = firebase.app();
+//       let features = ['auth', 'database', 'messaging', 'storage'].filter(feature => typeof app[feature] === 'function');
+//       document.getElementById('load').innerHTML = `Firebase SDK loaded with ${features.join(', ')}`;
+//     } catch (e) {
+//       console.error(e);
+//       document.getElementById('load').innerHTML = 'Error loading the Firebase SDK, check the console.';
+//     }
+//   }); -->
+
+    <script type="text/javascript">
+      // FirebaseUI config.
+      var uiConfig = {
+        signInSuccessUrl: 'loggedIn.html',
+        signInOptions: [
+          // Leave the lines as is for the providers you want to offer your users.
+          firebase.auth.GoogleAuthProvider.PROVIDER_ID,
+          firebase.auth.EmailAuthProvider.PROVIDER_ID
+        ],
+        // Terms of service url.
+        tosUrl: '<your-tos-url>'
+      };
+      // Initialize the FirebaseUI Widget using Firebase.
+      var ui = new firebaseui.auth.AuthUI(firebase.auth());
+      // The start method will wait until the DOM is loaded.
+      ui.start('#firebaseui-auth-container', uiConfig);
     </script>
+  </head>
+  <body>
+ <div class="navbar navbar-default">
+  <div class="container">
+    <h1>SurfSnap</h1>
+    <h3>connecting local San Diego surfers and photographers</h3>
+  </div>
+ </div></br></br></br></br>
+
+  <div id="firebaseui-auth-container"></div>
+  
   </body>
 </html>
