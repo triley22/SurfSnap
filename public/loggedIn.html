@@ -45,6 +45,9 @@
         font-size: 17px;
         font-style: italic;
       }
+      #btnLogout {
+        float: right;
+      }
       .dropdown-menu {
         font-family: 'Lora', serif;
       }
@@ -59,6 +62,7 @@
     <div class="container">
       <h1>SurfSnap</h1>
       <h3>connecting local San Diego surfers and photographers</h3>
+      <button id="btnLogout" class="btn btn-danger hide btn pull-right">Log out</button>
     </div>
   </div></br></br></br>
 
@@ -111,7 +115,7 @@
 	<script src="https://www.gstatic.com/firebasejs/4.1.1/firebase-messaging.js"></script>
 
 <!-- Leave out Storage -->
-<!-- <script src="https://www.gstatic.com/firebasejs/4.1.1/firebase-storage.js"></script> -->
+<script src="https://www.gstatic.com/firebasejs/4.1.1/firebase-storage.js"></script>
 
 <!-- TO DO -->
 <!-- organize photos by date, chronological
@@ -122,17 +126,43 @@ find specific photographers via instagram, display their posts -->
 <!-- payments? , shopping cart, paypal, photographer sets price, photographer + surfer profile register -->
 <!-- organize temporary unique url, download the photographs they want, expire in 48 hours or use unique password
 terms and conditions for photographs and surfers -->
-	<script>
-	      // Initialize Firebase
-	      var config = {
-	        apiKey: "AIzaSyDqWAslVfHkcwzB2FOFPnMNF4FGSimP6ic",
-	        authDomain: "surfsnap-ab8c8.firebaseapp.com",
-	        databaseURL: "https://surfsnap-ab8c8.firebaseio.com",
-	        projectId: "surfsnap-ab8c8",
-	        storageBucket: "surfsnap-ab8c8.appspot.com",
-	        messagingSenderId: "190116652796"
-	  };
-	  firebase.initializeApp(config);
-	</script>
-</body>
+  <script>
+      // Initialize Firebase
+      var config = {
+        apiKey: "AIzaSyDqWAslVfHkcwzB2FOFPnMNF4FGSimP6ic",
+        authDomain: "surfsnap-ab8c8.firebaseapp.com",
+        databaseURL: "https://surfsnap-ab8c8.firebaseio.com",
+        projectId: "surfsnap-ab8c8",
+        storageBucket: "surfsnap-ab8c8.appspot.com",
+        messagingSenderId: "190116652796"
+      };
+        firebase.initializeApp(config);
+  </script>
+  <script type="text/javascript">
+  'use-strict';
+
+//get elements
+  const btnLogout = document.getElementById('btnLogout');  
+
+  var user, name, email, photoUrl, uid, emailVerified;
+
+  //log out button
+    btnLogout.addEventListener('click', e => {
+      firebase.auth().signOut();
+      window.location = "/";
+    });
+
+   //realtime event listener
+   firebase.auth().onAuthStateChanged(firebaseUser => {
+    if (firebaseUser) {
+      console.log(firebaseUser);
+      console.log(firebaseUser.displayName);
+      btnLogout.classList.remove('hide');
+    } else {
+      //redirect to index.html
+      btnLogout.classList.add('hide');
+    }
+   });
+  </script>
+  </body>
 </html>
