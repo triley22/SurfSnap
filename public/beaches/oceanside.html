@@ -113,14 +113,15 @@
   </div>
 </div><br>
 
+
 <div class="container">
   <h2>Upload Pictures</h2>
-<form id="image-form" action="#">
-  <input id="mediaCapture" type="file"><br>
-  <button class="btn btn-info btn-lg" id="submitImage" type="button">
-    Submit Image
-  </button>
-</form>
+  <form id="image-form" action="#">
+    <input id="mediaCapture" type="file"><br>
+    <button class="btn btn-info btn-lg" id="submitImage" type="button">Submit Image</button>
+    </form><br>
+    <img src="test" height="125px" width="200px"/> 
+  </div>
 </div>
   
   <!-- footer -->
@@ -236,6 +237,7 @@
         // Upload completed successfully, now we can get the download URL
         var downloadURL = uploadTask.snapshot.downloadURL;
         console.log(downloadURL);
+        document.querySelector('img').src = downloadURL;
       });
     });
     </script>
