@@ -114,10 +114,11 @@
 </div><br>
 
 <div class="container">
+  <h2>Upload Pictures</h2>
 <form id="image-form" action="#">
-  <input id="mediaCapture" type="file">
-  <button class="btn btn-info" id="submitImage" title="Add an image">
-    <i class="material-icons">Submit Image</i>
+  <input id="mediaCapture" type="file"><br>
+  <button class="btn btn-info btn-lg" id="submitImage" type="button">
+    Submit Image
   </button>
 </form>
 </div>
@@ -237,33 +238,6 @@
         console.log(downloadURL);
       });
     });
-    
-    //read data from storage
-
-
-   //saves image uri in firebase, first saves image in cloud storage
-   firebase.saveImage = function(event) {
-    var currentUser = this.auth.currentUser;
-    this.messagesRef.push({
-      name: currentUser.displayName,
-      imageUrl: SurfSnap.LOADING_IMAGE_URL,
-      photoUrl: currentUser.photoURL || '/images/profile_placeholder.png'
-    }).then(function(data) {
-
-      //upload image to cloud storage
-      var filePath = currentUser.uid + '/' + data.key + file.name;
-      return this.storage.ref(filePath).put(file).then(function(snapshot) {
-
-        //get files URI and update the placeholder
-        var fullPath = snapshot.metadata.fullPath;
-        return data.update({imageUrl: this.storage.ref(fullPath).toString()});
-      }.bind(this));
-    }.bind(this)).catch(function(error) {
-      console.error('There was an error uploading file to cloud storage:', error);
-    });
-   };
-
-
-  </script>
+    </script>
   </body>
 </html>
