@@ -1,110 +1,107 @@
 <!DOCTYPE html>
 <html>
-  <head>
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>SurfSnap</title>
-    <!-- update the version number as needed -->
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
-    <!-- Latest compiled and minified CSS -->
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
-    <!-- Optional theme -->
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap-theme.min.css" integrity="sha384-rHyoN1iRsVXV4nD0JutlnGaslCJuC7uwjduW9SVrLvRYooPp2bWYgmgJQIXwl/Sp" crossorigin="anonymous">
-    <!-- Latest compiled and minified JavaScript -->
-    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
-    <!-- include only the Firebase features as you need -->
-    <script defer src="/__/firebase/4.1.2/firebase-auth.js"></script>
-    <script defer src="/__/firebase/4.1.2/firebase-database.js"></script>
-    <script defer src="/__/firebase/4.1.2/firebase-messaging.js"></script>
-    <script defer src="/__/firebase/4.1.2/firebase-storage.js"></script>
-    <!-- initialize the SDK after all desired features are loaded -->
-    <script defer src="/__/firebase/init.js"></script>
-    <!-- fonts -->
-    <link href="https://fonts.googleapis.com/css?family=Lora|Montserrat" rel="stylesheet">
-    <style media="screen">
-      body { 
-        background: url(https://s4.postimg.org/j2zpfhkjx/tourmaline.jpg) no-repeat center center fixed; 
-        -webkit-background-size: cover;
-        -moz-background-size: cover;
-        -o-background-size: cover;
-        background-size: cover;
-      }
-      h1 {
-        color: #2aabd2;
-        font-family: 'Montserrat', sans-serif;
-      }
-      h2 {
-        color: black;
-        font-family: 'Montserrat', sans-serif;
-      }
-      h3 {
-        color: black;
-        font-family: 'Lora', serif;
-        font-size: 17px;
-        font-style: italic;
-      }
-      .dropdown-menu {
-        font-family: 'Lora', serif;
-      }
-      .navbar-text {
-        color: black;
-        font-family: 'Lora', serif;
-        font-size: 15px;
-        font-style: bold;
-         display:inline-block;
-      }
-    </style>
-  </head>
-  <body>
-    <nav class="navbar navbar-inverse">
-      <div class="container-fluid">
-        <div class="navbar-header">
-          <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#myNavbar">
-            <span class="icon-bar"></span>
-            <span class="icon-bar"></span>
-            <span class="icon-bar"></span>                        
-          </button>
-          <a class="navbar-brand" href="/home.html">SurfSnap</a>
-          <span class="navbar-text" id="welcome"></span>
-        </div>
-        <div class="collapse navbar-collapse" id="myNavbar">
-          <ul class="nav navbar-nav">
-            <!-- <li class="active"><a href="#">Home</a></li> -->
-            <li class="dropdown">
-              <a class="dropdown-toggle" data-toggle="dropdown" href="#">North County <span class="caret"></span></a>
-              <ul class="dropdown-menu">
-                <li><a href="/beaches/oceanside.html">Oceanside</a></li>
-                <li><a href="/beaches/swamis.html">Swamis</a></li>
-                <li><a href="/beaches/pipes.html">Pipes</a></li>
-                <li><a href="/beaches/cardiff.html">Cardiff</a></li>
-                <li><a href="/beaches/delmar.html">Del Mar</a></li>
-                <li role="separator" class="divider"></li>
-                <li><a href="/beaches/secretspot.html">Secret Spot</a></li>
-              </ul>
-            </li>
-            <li class="dropdown">
-              <a class="dropdown-toggle" data-toggle="dropdown" href="#">South County <span class="caret"></span></a>
-              <ul class="dropdown-menu">
-                <li><a href="/beaches/torreypines.html">Torrey Pines State Beach</a></li>
-                <li><a href="/beaches/blacks.html">Blacks</a></li>
-                <li><a href="/beaches/scripps.html">Scripps</a></li>
-                <li><a href="/beaches/windansea.html">WindanSea</a></li>
-                <li><a href="/beaches/pbpoint.html">PB Point</a></li>
-                <li><a href="/beaches/tourmaline.html">Tourmaline</a></li>
-                <li><a href="/beaches/tower23.html">Tower 23</a></li>
-                <li role="separator" class="divider"></li>
-                <li><a href="/beaches/secretspot.html">Secret Spot</a></li>
-              </ul>
-            </li>
-            <!-- <li><a href="#">Page 2</a></li>
-            <li><a href="#">Page 3</a></li> -->
-          </ul>
-          <ul class="nav navbar-nav navbar-right">
-            <li><a href="/index.html"><span class="glyphicon glyphicon-log-out"></span> Log Out</a></li>
-          </ul>
-        </div>
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>SurfSnap</title>
+  <!-- update the version number as needed -->
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+  <!-- Latest compiled and minified CSS -->
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+  <!-- Optional theme -->
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap-theme.min.css" integrity="sha384-rHyoN1iRsVXV4nD0JutlnGaslCJuC7uwjduW9SVrLvRYooPp2bWYgmgJQIXwl/Sp" crossorigin="anonymous">
+  <!-- Latest compiled and minified JavaScript -->
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
+  <!-- include only the Firebase features as you need -->
+  <script defer src="/__/firebase/4.1.2/firebase-auth.js"></script>
+  <script defer src="/__/firebase/4.1.2/firebase-database.js"></script>
+  <script defer src="/__/firebase/4.1.2/firebase-messaging.js"></script>
+  <script defer src="/__/firebase/4.1.2/firebase-storage.js"></script>
+  <!-- initialize the SDK after all desired features are loaded -->
+  <script defer src="/__/firebase/init.js"></script>
+  <!-- fonts -->
+  <link href="https://fonts.googleapis.com/css?family=Lora|Montserrat" rel="stylesheet">
+  <style media="screen">
+  body { 
+    background: url(https://s4.postimg.org/j2zpfhkjx/tourmaline.jpg) no-repeat center center fixed; 
+    -webkit-background-size: cover;
+    -moz-background-size: cover;
+    -o-background-size: cover;
+    background-size: cover;
+  }
+  h1 {
+    color: #2aabd2;
+    font-family: 'Montserrat', sans-serif;
+  }
+  h2 {
+    color: black;
+    font-family: 'Montserrat', sans-serif;
+  }
+  h3 {
+    color: black;
+    font-family: 'Lora', serif;
+    font-size: 17px;
+    font-style: italic;
+  }
+  .dropdown-menu {
+    font-family: 'Lora', serif;
+  }
+  .navbar-text {
+    color: black;
+    font-family: 'Lora', serif;
+    font-size: 15px;
+    font-style: bold;
+    display:inline-block;
+  }
+  </style>
+</head>
+<body>
+  <nav class="navbar navbar-inverse">
+    <div class="container-fluid">
+      <div class="navbar-header">
+        <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#myNavbar">
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>                        
+        </button>
+        <a class="navbar-brand" href="/home.html">SurfSnap</a>
+        <span class="navbar-text" id="welcome"></span>
       </div>
-    </nav>
+      <div class="collapse navbar-collapse" id="myNavbar">
+        <ul class="nav navbar-nav">
+          <li class="dropdown">
+            <a class="dropdown-toggle" data-toggle="dropdown" href="#">North County <span class="caret"></span></a>
+            <ul class="dropdown-menu">
+              <li><a href="/beaches/oceanside.html">Oceanside</a></li>
+              <li><a href="/beaches/swamis.html">Swamis</a></li>
+              <li><a href="/beaches/pipes.html">Pipes</a></li>
+              <li><a href="/beaches/cardiff.html">Cardiff</a></li>
+              <li><a href="/beaches/delmar.html">Del Mar</a></li>
+              <li role="separator" class="divider"></li>
+              <li><a href="/beaches/secretspot.html">Secret Spot</a></li>
+            </ul>
+          </li>
+          <li class="dropdown">
+            <a class="dropdown-toggle" data-toggle="dropdown" href="#">South County <span class="caret"></span></a>
+            <ul class="dropdown-menu">
+              <li><a href="/beaches/torreypines.html">Torrey Pines State Beach</a></li>
+              <li><a href="/beaches/blacks.html">Blacks</a></li>
+              <li><a href="/beaches/scripps.html">Scripps</a></li>
+              <li><a href="/beaches/windansea.html">WindanSea</a></li>
+              <li><a href="/beaches/pbpoint.html">PB Point</a></li>
+              <li><a href="/beaches/tourmaline.html">Tourmaline</a></li>
+              <li><a href="/beaches/tower23.html">Tower 23</a></li>
+              <li role="separator" class="divider"></li>
+              <li><a href="/beaches/secretspot.html">Secret Spot</a></li>
+            </ul>
+          </li>
+        </ul>
+        <ul class="nav navbar-nav navbar-right">
+          <li><a href="/index.html"><span class="glyphicon glyphicon-log-out"></span> Log Out</a></li>
+        </ul>
+      </div>
+    </div>
+  </nav>
   <!-- footer -->
   <div class="navbar navbar-inverse navbar-fixed-bottom">
     <div class="container">
@@ -113,23 +110,23 @@
     </div>
   </div>
 
-	<script src="https://www.gstatic.com/firebasejs/4.1.1/firebase-app.js"></script>
-	<script src="https://www.gstatic.com/firebasejs/4.1.1/firebase-auth.js"></script>
-	<script src="https://www.gstatic.com/firebasejs/4.1.1/firebase-database.js"></script>
-	<script src="https://www.gstatic.com/firebasejs/4.1.1/firebase-messaging.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/4.1.1/firebase-app.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/4.1.1/firebase-auth.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/4.1.1/firebase-database.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/4.1.1/firebase-messaging.js"></script>
 
-<!-- Leave out Storage -->
-<script src="https://www.gstatic.com/firebasejs/4.1.1/firebase-storage.js"></script>
+  <!-- Leave out Storage -->
+  <script src="https://www.gstatic.com/firebasejs/4.1.1/firebase-storage.js"></script>
 
-<!-- TO DO -->
+  <!-- TO DO -->
 <!-- organize photos by date, chronological
-find specific photographers via instagram, display their posts -->
-<!-- #.htmlsurfsnapblacksbeach, instagram api research -->
-<!-- https://www.imagemagick.org/script/index.php  watermark -->
-<!-- firebase storage? -->
-<!-- payments? , shopping cart, paypal, photographer sets price, photographer + surfer profile register -->
+  find specific photographers via instagram, display their posts -->
+  <!-- #.htmlsurfsnapblacksbeach, instagram api research -->
+  <!-- https://www.imagemagick.org/script/index.php  watermark -->
+  <!-- firebase storage? -->
+  <!-- payments? , shopping cart, paypal, photographer sets price, photographer + surfer profile register -->
 <!-- organize temporary unique url, download the photographs they want, expire in 48 hours or use unique password
-terms and conditions for photographs and surfers -->
+  terms and conditions for photographs and surfers -->
   <script>
       // Initialize Firebase
       var config = {
@@ -140,15 +137,15 @@ terms and conditions for photographs and surfers -->
         storageBucket: "surfsnap-ab8c8.appspot.com",
         messagingSenderId: "190116652796"
       };
-        firebase.initializeApp(config);
-  </script>
-  <script type="text/javascript">
-  'use-strict';
+      firebase.initializeApp(config);
+      </script>
+      <script type="text/javascript">
+      'use-strict';
 
 //get elements
-  const btnLogout = document.getElementById('btnLogout');  
+const btnLogout = document.getElementById('btnLogout');  
 
-  var user, name, email, photoUrl, uid, emailVerified;
+var user, name, email, photoUrl, uid, emailVerified;
 
    //realtime event listener
    firebase.auth().onAuthStateChanged(firebaseUser => {
@@ -162,7 +159,7 @@ terms and conditions for photographs and surfers -->
       //redirect to index.html
       btnLogout.classList.add('hide');
     }
-   });
-  </script>
-  </body>
-</html>
+  });
+   </script>
+ </body>
+ </html>
