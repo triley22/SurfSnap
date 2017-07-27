@@ -11,15 +11,12 @@
   <!-- Optional theme -->
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap-theme.min.css" integrity="sha384-rHyoN1iRsVXV4nD0JutlnGaslCJuC7uwjduW9SVrLvRYooPp2bWYgmgJQIXwl/Sp" crossorigin="anonymous">
   <!-- Latest compiled and minified JavaScript -->
-  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
-  <!-- include only the Firebase features as you need -->
-  <script defer src="/__/firebase/4.1.2/firebase-auth.js"></script>
-  <!-- initialize the SDK after all desired features are loaded -->
-  <script defer src="/__/firebase/init.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>  
   <!-- fonts -->
   <link href="https://fonts.googleapis.com/css?family=Lato|Open+Sans" rel="stylesheet">
   <!-- font awesome icons -->
   <script src="https://use.fontawesome.com/2f91b4846f.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/4.1.5/firebase.js"></script>
   <style media="screen">
   body { 
     background: url(https://s4.postimg.org/j2zpfhkjx/tourmaline.jpg) no-repeat center center fixed; 
@@ -95,12 +92,14 @@
         messagingSenderId: "190116652796"
       };
       firebase.initializeApp(config);
-  </script>
-  <script type="text/javascript">
+
+      var rootRef = firebase.database().ref();
+      </script>
+      <script type="text/javascript">
       'use-strict';
 
 //get elements
-const btnLogout = document.getElementById('btnLogout');  
+const signOut = document.getElementById('signOut');  
 
 var user, name, email, photoUrl, uid, emailVerified;
 
@@ -114,11 +113,23 @@ var user, name, email, photoUrl, uid, emailVerified;
     }   
   });
 
+  //monitor auth state
+  var auth = firebase.auth();
+
+  auth.onAuthStateChanged(function(user) {
+    if (user) {
+      console.log('Signed In');
+      var uid = user.uid;
+    } else {
+      console.log('User Signed Out');
+    }
+  });
+
     //signOut
     signOut.addEventListener('click', e => {
       firebase.auth().signOut();
       console.log('You have successfully signed out.');      
     });
-</script>
-</body>
-</html>
+    </script>
+  </body>
+  </html>
