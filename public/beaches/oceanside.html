@@ -108,6 +108,9 @@
     display: table;
     clear: both;
   }
+  img {
+    float: right;
+  }
   </style>
 </head>
 <body>
@@ -158,43 +161,12 @@
     </div>
   </nav>
   <div class="container">
-    <h2>Upload Pictures</h2>
-    <form id="image-form" action="#">
-      <input id="mediaCapture" type="file"><br>
-      <button class="btn btn-info btn-lg" id="submitImage" type="button">Submit Image</button>
-    </form><br>
-    <!-- <img src="test" height="125px" width="200px"/>  -->
+    <img width="100" height="100" id="image" src=""/>
+    <label><b>Upload Surf Pictures</label></b>
+    <input id="mediaCapture" type="file">
+    <progress value="0" max="100" id="uploader">0%</progress><br>
+    <button class="btn btn-default btn-sm" id="submitImage">Submit</button><br>
   </div>
-</div>
-
-<div class="container">
-  <div class="responsive">
-    <div class="gallery">
-      <a target="_blank" href="img_forest.jpg">
-       <img src="test" height="125px" width="200px"/>
-     </a>
-     <div class="desc"></div>
-   </div>
- </div>
-
- <div class="responsive">
-  <div class="gallery">
-    <a target="_blank" href="img_lights.jpg">
-      <img src="http://imgur.com/u60hAO2.gif" alt="Northern Lights" width="600" height="400">
-    </a>
-    <div class="desc">Add a description of the image here</div>
-  </div>
-</div>
-
-<div class="responsive">
-  <div class="gallery">
-    <a target="_blank" href="img_mountains.jpg">
-      <img src="http://imgur.com/u60hAO2.gif" alt="Mountains" width="600" height="400">
-    </a>
-    <div class="desc">Add a description of the image here</div>
-  </div>
-</div>
-</div>
 
 <!-- footer -->
 <div class="navbar navbar-inverse navbar-fixed-bottom">
