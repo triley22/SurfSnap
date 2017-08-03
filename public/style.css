@@ -6,6 +6,15 @@
   display:inline-block;
   font-size: 15px;
 }
+#htmlbtnLogout {
+    color: black;
+    font-family: 'Lora', serif;
+    font-size: 17px;
+  }
+#li {
+    font-family: 'Lora', serif;
+    font-style: italic;
+  }
 a {
   font-family: 'Open Sans', sans-serif;
   display:inline-block;
@@ -17,3 +26,130 @@ a {
   font-style: italic;
   font-style: bold;
 }
+.navbar-text {
+    color: black;
+    font-family: 'Lora', serif;
+    font-size: 15px;
+    font-style: bold;
+    display:inline-block;
+  }
+.material-icons {
+    font-size: 36px;
+    top: 8px;
+    position: relative;
+  }
+/*gallery*/
+div.gallery {
+    border: 1px solid #ccc;
+}
+div.gallery:hover {
+    border: 1px solid #777;
+}
+div.gallery img {
+    width: 100%;
+    height: auto;
+}
+div.desc {
+    padding: 15px;
+    text-align: center;
+}
+* {
+    box-sizing: border-box;
+}
+.responsive {
+    padding: 0 6px;
+    float: left;
+    width: 24.99999%;
+}
+@media only screen and (max-width: 700px){
+    .responsive {
+        width: 49.99999%;
+        margin: 6px 0;
+    }
+}
+@media only screen and (max-width: 500px){
+    .responsive {
+        width: 100%;
+    }
+}
+.desc {
+    color: white;
+    font-family: 'Lora', serif;
+    font-size: 17px;
+    font-style: italic;
+}
+/*h1 {
+    color: #2aabd2;
+    font-family: 'Montserrat', sans-serif;
+  }
+  h2 {
+    color: black;
+    font-family: 'Montserrat', sans-serif;
+  }
+  h3 {
+    color: black;
+    font-family: 'Lora', serif;
+    font-size: 17px;
+    font-style: italic;
+  }
+  #htmlbtnLogout {
+    color: black;
+    font-family: 'Lora', serif;
+    font-size: 17px;
+  }
+  .dropdown-menu {
+    font-family: 'Lora', serif;
+  }
+  #li {
+    font-family: 'Lora', serif;
+    font-style: italic;
+  }
+  .navbar-text {
+    color: black;
+    font-family: 'Lora', serif;
+    font-size: 15px;
+    font-style: bold;
+    display:inline-block;
+  }
+  .material-icons {
+    font-size: 36px;
+    top: 8px;
+    position: relative;
+  }
+  img {
+    float: right;
+  }
+  div.gallery {
+    border: 1px solid #ccc;
+}
+div.gallery:hover {
+    border: 1px solid #777;
+}
+div.gallery img {
+    width: 100%;
+    height: auto;
+}
+div.desc {
+    padding: 15px;
+    text-align: center;
+}
+* {
+    box-sizing: border-box;
+}
+.responsive {
+    padding: 0 6px;
+    float: left;
+    width: 24.99999%;
+}
+@media only screen and (max-width: 700px){
+    .responsive {
+        width: 49.99999%;
+        margin: 6px 0;
+    }
+}
+@media only screen and (max-width: 500px){
+    .responsive {
+        width: 100%;
+    }
+}
+*/
