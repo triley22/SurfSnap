@@ -1,5 +1,5 @@
 body { 
-    background: url(https://s24.postimg.org/aqptu0a6t/moonlight.jpg) no-repeat center center fixed; 
+    background: url(http://imgur.com/TUm2E8V.jpg) no-repeat center center fixed; 
     -webkit-background-size: cover;
     -moz-background-size: cover;
     -o-background-size: cover;
@@ -41,6 +41,9 @@ a {
   display:inline-block;
   font-size: 15px;
 }
+#addSurfSnapImagePreview {
+  float: right;
+}
 .navbar-brand {
   font-family: 'Lato', sans-serif;
   font-size: 20px;
@@ -72,9 +75,8 @@ div.gallery img {
     height: auto;
 }
 div.desc {
-    padding: 15px;
+    padding: 8px;
     font-family: Lato;
-    text-align: center;
     background-color: #323232;
     color: #d5eaff;   
 }

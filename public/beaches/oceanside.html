@@ -61,16 +61,16 @@
           </li>
         
           <!-- Button trigger modal -->
-          <button type="button" class="btn btn-classic" data-toggle="modal" data-target="#photoUpload">
-            Photo Upload <i class="fa fa-upload" aria-hidden="true"></i>
-          </button>
-        </ul>
-        <ul class="nav navbar-nav navbar-right">
-          <li><a href="/index.html" id="signOut"><span class="glyphicon glyphicon-log-out"></span> Log Out</a></li>
-        </ul>
+          <li class="nav-item">
+            <a class="nav-link" data-toggle="modal" data-target="#photoUpload">Snap <i class="fa fa-upload" aria-hidden="true"></i>
+            </a></li>
+          </ul>
+          <ul class="nav navbar-nav navbar-right">
+            <li><a href="/index.html" id="signOut"><span class="glyphicon glyphicon-log-out"></span> Log Out</a></li>
+          </ul>
+        </div>
       </div>
-    </div>
-  </nav><br><br><br>
+    </nav><br><br><br>
 
   <!-- Photo Upload Modal -->
   <div class="modal fade" id="photoUpload" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
@@ -78,20 +78,20 @@
       <div class="modal-content">
         <div class="modal-header">
           <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-          <h4 class="modal-title" id="myModalLabel">Share SurfSnap Shots!</h4>
+          <h4 class="modal-title" id="myModalLabel">Share SurfSnaps</h4>
         </div>
         <div class="modal-body">
-          <label><b>SurfSnap Shot</b></label>
-          <img width="100" height"100" id="photoUploader" src=""/>
-          <input id="photo" type="file">
-          <progress value="0" max="100" id="surfPhotoUploader">0%</progress><br>
-          <button class="btn btn-default btn-sm" id="addBusFeatPic1" type"button">Submit</button>
-          <input type="hidden" type="text" class="form-control" id="saveImage"><br><br>
+          <!-- <img width="100" height="100" id="addSurfSnapImagePreview" src=""/> -->
+          <label><b>SurfSnap</b></label>
+          <input id="addSurfSnapMediaCapture" type="file">
+          <progress value="0" max="100" id="addSurfSnapUploader">0%</progress><br>
+          <button class="btn btn-default btn-sm" id="addSurfSnap" type"button">Submit</button><br>
+          <input type="hidden" type="text" class="form-control" id="addSurfSnapSavedURL"><br>
         </div>
-        <div class="modal-footer">
-          <button type="button" class="btn btn-default" data-dismiss="modal">Cancel</button>
-          <button type="button" class="btn btn-success" onclick="savePhotos()">Upload SurfSnap Photos!</button>
-        </div>
+        <!-- <div class="modal-footer">
+          <button type="button" class="btn btn-danger" data-dismiss="modal">Cancel</button>
+          <button type="button" class="btn btn-default" onclick="uploadSnap()">Upload SurfSnap Shots</button>
+        </div> -->
       </div>
     </div>
   </div>
@@ -100,7 +100,7 @@
 <div class="container">
   <div class="responsive">
     <div class="gallery">
-        <img src="https://s4.postimg.org/j2zpfhkjx/tourmaline.jpg" width="600" height="400">
+        <img width="600" height="400" id="addSurfSnapImagePreview" src=""/>
       <div class="desc"><div class="glyphicon glyphicon-heart" id="like" onClick="clickME()">
       </div><span>  likes <span id="clicks">0</span></div></span>
     </div>
@@ -108,8 +108,16 @@
 
   <div class="responsive">
     <div class="gallery">
+        <img src="https://s4.postimg.org/j2zpfhkjx/tourmaline.jpg" width="600" height="400">
+      <div class="desc"><div class="glyphicon glyphicon-heart" id="like1" onClick="clickME()">
+      </div><span>  likes <span id="clicks">0</span></div></span>
+    </div>
+  </div>
+
+  <div class="responsive">
+    <div class="gallery">
         <img src="https://s17.postimg.org/wzdpsw0xr/blacksbeach.jpg" width="600" height="400">
-      <div class="desc"><div class="glyphicon glyphicon-heart" id="like1" onClick="clickME1()">
+      <div class="desc"><div class="glyphicon glyphicon-heart" id="like2" onClick="clickME1()">
       </div><span>  likes <span id="clicks1">0</span></div></span>
     </div>
   </div>
@@ -117,18 +125,18 @@
   <div class="responsive">
     <div class="gallery">
         <img src="https://s2.postimg.org/ysqbrhv5l/scripps.jpg" width="600" height="400">
-      <div class="desc"><div class="glyphicon glyphicon-heart" id="like2" onClick="clickME2()">
+      <div class="desc"><div class="glyphicon glyphicon-heart" id="like3" onClick="clickME2()">
       </div><span>  likes <span id="clicks2">0</span></div></span>
-    </div>
+    </div><br>
   </div>
 
   <div class="responsive">
     <div class="gallery">
         <img src="https://s22.postimg.org/5oob2q6g1/pbpoint.jpg" width="600" height="400">
-      <div class="desc"><div class="glyphicon glyphicon-heart" id="like3" onClick="clickME3()">
+      <div class="desc"><div class="glyphicon glyphicon-heart" id="like4" onClick="clickME3()">
       </div><span>  likes <span id="clicks3">0</span></div></span>
   </div>
-</div><br><br>
+</div>
 
 <script src="https://www.gstatic.com/firebasejs/4.1.1/firebase-app.js"></script>
 <script src="https://www.gstatic.com/firebasejs/4.1.1/firebase-auth.js"></script>
@@ -154,6 +162,17 @@
 
 //get elements
 const btnLogout = document.getElementById('btnLogout');  
+const addSurfSnap = document.getElementById('addSurfSnap');
+
+//add photo
+addSurfSnap.addEventListener('click', e => {
+  e.preventDefault();
+  const mediaCapture = document.getElementById('addSurfSnapMediaCapture');
+  const savedURL = document.getElementById('addSurfSnapSavedURL');
+  const uploader = document.getElementById('addSurfSnapUploader');
+  const imagePreview = document.getElementById('addSurfSnapImagePreview');
+  handleImageUpload(mediaCapture, savedURL, uploader, imagePreview);
+});
 
 var user, name, email, photoUrl, uid, emailVerified;
 
@@ -165,96 +184,92 @@ var user, name, email, photoUrl, uid, emailVerified;
     }
   });
 
-   //image storage, get reference to the storage service
-   var storage = firebase.storage();
-
-   //create storage reference from our storage service
-   var storageRef = storage.ref();
-
-   const submitImage = document.getElementById('submitImage');
-
-   // Create the file metadata
    var metadata = {
-    contentType: 'image/jpeg'
-  };
+      contentType: 'image/jpeg'
+   };
 
-//   savePhotos.addEventListener('click', e => {
-//     e.preventDefault()
-//     var storage = firebase.storage();
-//     var storageRef = storage.ref();
-//     const mediaCapture = document.getElementById('mediaCapture');
-//     var file = mediaCapture.files[0];
-//     console.log(mediaCapture.files);
-//     // Upload file and metadata to the object 'images/mountains.jpg'
-//     var uploadTask = storageRef.child('images/oceanside/' + file.name).put(file, metadata);
+    //get reference to storage service
+    var storage = firebase.storage();
 
-//     // Listen for state changes, errors, and completion of the upload.
-//     uploadTask.on(firebase.storage.TaskEvent.STATE_CHANGED, // or 'state_changed'
-//       function(snapshot) {
-//           // Get task progress, including the number of bytes uploaded and the total number of bytes to be uploaded
-//           var progress = (snapshot.bytesTransferred / snapshot.totalBytes) * 100;
-//           uploader.value = progress;
-//           console.log('Upload is ' + progress + '% done');
-//           switch (snapshot.state) {
-//             case firebase.storage.TaskState.PAUSED: // or 'paused'
-//             console.log('Upload is paused');
-//             break;
-//             case firebase.storage.TaskState.RUNNING: // or 'running'
-//             console.log('Upload is running');
-//             break;
-//           }
-//         }, function(error) {
+   function handleImageUpload (mediaCapture, savedURL, uploader, imagePreview) {
+    //create storage reference from storage service
+    var storageRef = firebase.storage().ref();
+        
+    var file = mediaCapture.files[0];
+    var uploadTask = storageRef.child(file.name).put(file, metadata);
+        
+    uploadTask.on(firebase.storage.TaskEvent.STATE_CHANGED,
+        //tracks progress
+        function(snapshot) {
+            var progress = (snapshot.bytesTransferred / snapshot.totalBytes) * 100;
+            uploader.value = progress;
+            switch (snapshot.state) {
+                case firebase.storage.TaskState.PAUSED:
+                    console.log('Upload is paused');
+                    break;
+                case firebase.storage.TaskState.RUNNING:
+                    console.log('Upload is running');
+                    break;
+            }
+        },
+        //error handling
+        function(error) {
+            switch (error.code) {
+                // User doesn't have permission to access the object
+                case 'storage/unauthorized':
+                    break;
+                // User canceled the upload
+                case 'storage/canceled':
+                    break;
+                // Unknown error occurred, inspect error.serverResponse
+                case 'storage/unknown':
+                    break;
+            }
+        },
+        //on completion
+        function() {
+            var imageURL = uploadTask.snapshot.downloadURL;
+            console.log(imageURL);
+            savedURL.value = imageURL;
+            imagePreview.setAttribute("src", imageURL);
+        }
+    );
+}
 
-//         // A full list of error codes is available at
-//         // https://firebase.google.com/docs/storage/web/handle-errors
-//         switch (error.code) {
-//           case 'storage/unauthorized':
-//             // User doesn't have permission to access the object
-//             break;
+  //   firebase.auth().onAuthStateChanged(firebaseUser => {
+  //   if (firebaseUser) {
+  //     console.log(firebaseUser);
+  //     console.log(firebaseUser.displayName);
+  //     var x = ('Welcome ' + firebaseUser.displayName);
+  //     document.getElementById("welcome").innerHTML = x;
+  //   }   
+  // });
 
-//             case 'storage/canceled':
-//             // User canceled the upload
-//             break;
-
-//             case 'storage/unknown':
-//             // Unknown error occurred, inspect error.serverResponse
-//             break;
-//           }
-//         }, function() {
-//         // Upload completed successfully, now we can get the download URL
-//         var downloadURL = uploadTask.snapshot.downloadURL;
-//         console.log(downloadURL);
-//         document.querySelector('img').src = downloadURL;
-//       });
-// });
-    
     //likes counter
-    var clicks = 0;
+    
     function clickME() {
+      var clicks = 0;
       clicks += 1;
       document.getElementById('clicks').innerHTML = clicks;
       document.getElementById('like').style.color = '#1b65b4';
     }
-
-    //likes counter
-    var clicks = 0;
+    
     function clickME1() {
+      var clicks = 0;
       clicks += 1;
       document.getElementById('clicks1').innerHTML = clicks;
       document.getElementById('like1').style.color = '#1b65b4';
     }
-
-    //likes counter
-    var clicks = 0;
+    
     function clickME2() {
+      var clicks = 0;
       clicks += 1;
       document.getElementById('clicks2').innerHTML = clicks;
       document.getElementById('like2').style.color = '#1b65b4';
     }
-
-    //likes counter
-    var clicks = 0;
+    
     function clickME3() {
+      var clicks = 0;
       clicks += 1;
       document.getElementById('clicks3').innerHTML = clicks;
       document.getElementById('like3').style.color = '#1b65b4';
