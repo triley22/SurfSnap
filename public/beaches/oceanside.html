@@ -89,7 +89,7 @@
           <input type="hidden" type="text" class="form-control" id="addSurfSnapSavedURL"><br>
         </div>
         <div class="modal-footer">
-          <button type="button" class="btn btn-basic" data-dismiss="modal">Cancel</button>
+          <button type="button" class="btn btn-classic" data-dismiss="modal">Cancel</button>
           <button class="btn btn-info btn-sm" id="addSurfSnap" type"button">Share Photo</button><br>
         </div>
       </div>
@@ -197,7 +197,7 @@ var user, name, email, photoUrl, uid, emailVerified;
     var storageRef = firebase.storage().ref();
         
     var file = mediaCapture.files[0];
-    var uploadTask = storageRef.child(file.name).put(file, metadata);
+    var uploadTask = storageRef.child('file.name').put(file, metadata);
         
     uploadTask.on(firebase.storage.TaskEvent.STATE_CHANGED,
         //tracks progress
@@ -235,17 +235,39 @@ var user, name, email, photoUrl, uid, emailVerified;
             imagePreview.setAttribute("src", imageURL);
       });
 }
-  
-  // var database = firebase.database();
-  // var photos = database.ref('photos');
 
-  // function sharePhoto() {
-  //   var thisPhoto = photos.child(document.getElementById('addSurfSnapSavedURL').value).push();
-  //   thisPhoto.set({
-  //     'photo_oceanside': document.getElementById('addSurfSnapSavedURL').value,
-  //   });
-  //   console.log(addSurfSnapSavedURL);
-  // };
+//download with error handling
+// Create a reference to the file we want to download
+var storageRef = firebase.storage().ref();
+var photoRef = storageRef.child('sunset.jpg');
+
+// Get the download URL
+photoRef.getDownloadURL().then(function(url) {
+  // Insert url into an <img> tag to "download"
+    var test = url;
+    document.querySelector('img').src = test;
+}).catch(function(error) {
+
+  // A full list of error codes is available at
+  // https://firebase.google.com/docs/storage/web/handle-errors
+  switch (error.code) {
+    case 'storage/object_not_found':
+      // File doesn't exist
+      break;
+
+    case 'storage/unauthorized':
+      // User doesn't have permission to access the object
+      break;
+
+    case 'storage/canceled':
+      // User canceled the upload
+      break;
+
+    case 'storage/unknown':
+      // Unknown error occurred, inspect the server response
+      break;
+  }
+});
 
   //   firebase.auth().onAuthStateChanged(firebaseUser => {
   //   if (firebaseUser) {
@@ -271,21 +293,21 @@ var user, name, email, photoUrl, uid, emailVerified;
       document.getElementById('like1').style.color = '#1b65b4';
     }
     
-    function clickME1() {
+    function clickME2() {
       var clicks = 0;
       clicks += 1;
       document.getElementById('clicks2').innerHTML = clicks;
       document.getElementById('like2').style.color = '#1b65b4';
     }
     
-    function clickME2() {
+    function clickME3() {
       var clicks = 0;
       clicks += 1;
       document.getElementById('clicks3').innerHTML = clicks;
       document.getElementById('like3').style.color = '#1b65b4';
     }
     
-    function clickME3() {
+    function clickME4() {
       var clicks = 0;
       clicks += 1;
       document.getElementById('clicks4').innerHTML = clicks;
