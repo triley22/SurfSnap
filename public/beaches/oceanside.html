@@ -78,20 +78,20 @@
       <div class="modal-content">
         <div class="modal-header">
           <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-          <h4 class="modal-title" id="myModalLabel">Share SurfSnaps</h4>
+          <h4 class="modal-title" id="myModalLabel">Upload Surf Photos</h4>
         </div>
         <div class="modal-body">
           <!-- <img width="100" height="100" id="addSurfSnapImagePreview" src=""/> -->
           <label><b>SurfSnap</b></label>
           <input id="addSurfSnapMediaCapture" type="file">
           <progress value="0" max="100" id="addSurfSnapUploader">0%</progress><br>
-          <button class="btn btn-default btn-sm" id="addSurfSnap" type"button">Submit</button><br>
+          <!-- <button class="btn btn-default btn-sm" id="addSurfSnap" type"button">Submit</button><br> -->
           <input type="hidden" type="text" class="form-control" id="addSurfSnapSavedURL"><br>
         </div>
-        <!-- <div class="modal-footer">
-          <button type="button" class="btn btn-danger" data-dismiss="modal">Cancel</button>
-          <button type="button" class="btn btn-default" onclick="uploadSnap()">Upload SurfSnap Shots</button>
-        </div> -->
+        <div class="modal-footer">
+          <button type="button" class="btn btn-basic" data-dismiss="modal">Cancel</button>
+          <button class="btn btn-info btn-sm" id="addSurfSnap" type"button">Share Photo</button><br>
+        </div>
       </div>
     </div>
   </div>
@@ -109,32 +109,32 @@
   <div class="responsive">
     <div class="gallery">
         <img src="https://s4.postimg.org/j2zpfhkjx/tourmaline.jpg" width="600" height="400">
-      <div class="desc"><div class="glyphicon glyphicon-heart" id="like1" onClick="clickME()">
-      </div><span>  likes <span id="clicks">0</span></div></span>
-    </div>
-  </div>
-
-  <div class="responsive">
-    <div class="gallery">
-        <img src="https://s17.postimg.org/wzdpsw0xr/blacksbeach.jpg" width="600" height="400">
-      <div class="desc"><div class="glyphicon glyphicon-heart" id="like2" onClick="clickME1()">
+      <div class="desc"><div class="glyphicon glyphicon-heart" id="like1" onClick="clickME1()">
       </div><span>  likes <span id="clicks1">0</span></div></span>
     </div>
   </div>
 
   <div class="responsive">
     <div class="gallery">
-        <img src="https://s2.postimg.org/ysqbrhv5l/scripps.jpg" width="600" height="400">
-      <div class="desc"><div class="glyphicon glyphicon-heart" id="like3" onClick="clickME2()">
+        <img src="https://s17.postimg.org/wzdpsw0xr/blacksbeach.jpg" width="600" height="400">
+      <div class="desc"><div class="glyphicon glyphicon-heart" id="like2" onClick="clickME2()">
       </div><span>  likes <span id="clicks2">0</span></div></span>
+    </div>
+  </div>
+
+  <div class="responsive">
+    <div class="gallery">
+        <img src="https://s2.postimg.org/ysqbrhv5l/scripps.jpg" width="600" height="400">
+      <div class="desc"><div class="glyphicon glyphicon-heart" id="like3" onClick="clickME3()">
+      </div><span>  likes <span id="clicks3">0</span></div></span>
     </div><br>
   </div>
 
   <div class="responsive">
     <div class="gallery">
         <img src="https://s22.postimg.org/5oob2q6g1/pbpoint.jpg" width="600" height="400">
-      <div class="desc"><div class="glyphicon glyphicon-heart" id="like4" onClick="clickME3()">
-      </div><span>  likes <span id="clicks3">0</span></div></span>
+      <div class="desc"><div class="glyphicon glyphicon-heart" id="like4" onClick="clickME4()">
+      </div><span>  likes <span id="clicks4">0</span></div></span>
   </div>
 </div>
 
@@ -156,6 +156,7 @@
         messagingSenderId: "190116652796"
       };
       firebase.initializeApp(config);
+      
       </script>
       <script type="text/javascript">
       'use-strict';
@@ -232,9 +233,19 @@ var user, name, email, photoUrl, uid, emailVerified;
             console.log(imageURL);
             savedURL.value = imageURL;
             imagePreview.setAttribute("src", imageURL);
-        }
-    );
+      });
 }
+  
+  // var database = firebase.database();
+  // var photos = database.ref('photos');
+
+  // function sharePhoto() {
+  //   var thisPhoto = photos.child(document.getElementById('addSurfSnapSavedURL').value).push();
+  //   thisPhoto.set({
+  //     'photo_oceanside': document.getElementById('addSurfSnapSavedURL').value,
+  //   });
+  //   console.log(addSurfSnapSavedURL);
+  // };
 
   //   firebase.auth().onAuthStateChanged(firebaseUser => {
   //   if (firebaseUser) {
@@ -246,12 +257,11 @@ var user, name, email, photoUrl, uid, emailVerified;
   // });
 
     //likes counter
-    
     function clickME() {
       var clicks = 0;
       clicks += 1;
       document.getElementById('clicks').innerHTML = clicks;
-      document.getElementById('like').style.color = '#1b65b4';
+      document.getElementById('like').innerHTML = '#1b65b4';
     }
     
     function clickME1() {
@@ -261,18 +271,25 @@ var user, name, email, photoUrl, uid, emailVerified;
       document.getElementById('like1').style.color = '#1b65b4';
     }
     
-    function clickME2() {
+    function clickME1() {
       var clicks = 0;
       clicks += 1;
       document.getElementById('clicks2').innerHTML = clicks;
       document.getElementById('like2').style.color = '#1b65b4';
     }
     
-    function clickME3() {
+    function clickME2() {
       var clicks = 0;
       clicks += 1;
       document.getElementById('clicks3').innerHTML = clicks;
       document.getElementById('like3').style.color = '#1b65b4';
+    }
+    
+    function clickME3() {
+      var clicks = 0;
+      clicks += 1;
+      document.getElementById('clicks4').innerHTML = clicks;
+      document.getElementById('like4').style.color = '#1b65b4';
     }
 </script>
 </body>

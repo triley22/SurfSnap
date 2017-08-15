@@ -62,6 +62,9 @@ a {
     top: 8px;
     position: relative;
   }
+.modal-body {
+  float: left;
+}
 /*gallery*/
 div.gallery {
     border: 1px solid #323232;
