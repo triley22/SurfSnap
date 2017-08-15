@@ -100,9 +100,9 @@
 <div class="container">
   <div class="responsive">
     <div class="gallery">
-        <img width="600" height="400" id="addSurfSnapImagePreview" src=""/>
-      <div class="desc"><div class="glyphicon glyphicon-heart" id="like" onClick="clickME()">
-      </div><span>  likes <span id="clicks">0</span></div></span>
+        <img id="addSurfSnapImagePreview" src="" width="600" height="400"/>
+      <div class="desc"><div class="glyphicon glyphicon-heart" id="like5" onClick="clickME()">
+      </div><span>  likes <span id="clicks5">0</span></div></span>
     </div>
   </div>
 
@@ -239,7 +239,7 @@ var user, name, email, photoUrl, uid, emailVerified;
 //download with error handling
 // Create a reference to the file we want to download
 var storageRef = firebase.storage().ref();
-var photoRef = storageRef.child('sunset.jpg');
+var photoRef = storageRef.child('file.name');
 
 // Get the download URL
 photoRef.getDownloadURL().then(function(url) {
@@ -277,39 +277,30 @@ photoRef.getDownloadURL().then(function(url) {
   //     document.getElementById("welcome").innerHTML = x;
   //   }   
   // });
-
-    //likes counter
-    function clickME() {
-      var clicks = 0;
+  var clicks = 0;
       clicks += 1;
-      document.getElementById('clicks').innerHTML = clicks;
-      document.getElementById('like').innerHTML = '#1b65b4';
+
+    function clickME() {
+      document.getElementById('clicks5').innerHTML = clicks;
+      document.getElementById('like5').style.color = '#1b65b4';
     }
     
     function clickME1() {
-      var clicks = 0;
-      clicks += 1;
       document.getElementById('clicks1').innerHTML = clicks;
       document.getElementById('like1').style.color = '#1b65b4';
     }
     
     function clickME2() {
-      var clicks = 0;
-      clicks += 1;
       document.getElementById('clicks2').innerHTML = clicks;
       document.getElementById('like2').style.color = '#1b65b4';
     }
     
     function clickME3() {
-      var clicks = 0;
-      clicks += 1;
       document.getElementById('clicks3').innerHTML = clicks;
       document.getElementById('like3').style.color = '#1b65b4';
     }
     
     function clickME4() {
-      var clicks = 0;
-      clicks += 1;
       document.getElementById('clicks4').innerHTML = clicks;
       document.getElementById('like4').style.color = '#1b65b4';
     }
