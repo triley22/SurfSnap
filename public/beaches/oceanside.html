@@ -72,39 +72,38 @@
       </div>
     </nav><br><br><br>
 
-  <!-- Photo Upload Modal -->
-  <div class="modal fade" id="photoUpload" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
-    <div class="modal-dialog" role="document">
-      <div class="modal-content">
-        <div class="modal-header">
-          <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-          <h4 class="modal-title" id="myModalLabel">Upload Surf Photos</h4>
-        </div>
-        <div class="modal-body">
-          <!-- <img width="100" height="100" id="addSurfSnapImagePreview" src=""/> -->
-          <label><b>SurfSnap</b></label>
-          <input id="addSurfSnapMediaCapture" type="file">
-          <progress value="0" max="100" id="addSurfSnapUploader">0%</progress><br>
-          <!-- <button class="btn btn-default btn-sm" id="addSurfSnap" type"button">Submit</button><br> -->
-          <input type="hidden" type="text" class="form-control" id="addSurfSnapSavedURL"><br>
-        </div>
-        <div class="modal-footer">
-          <button type="button" class="btn btn-classic" data-dismiss="modal">Cancel</button>
-          <button class="btn btn-info btn-sm" id="addSurfSnap" type"button">Share Photo</button><br>
-        </div>
+  <div class="modal fade" id="photoUpload" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h4 class="modal-title" id="exampleModalLabel">Upload Surf Photos</h4>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+        </button>
+      </div>
+      <div class="modal-body">
+        <img width="100" height="100" id="addSurfSnapImagePreview" src="">
+        <input id="addSurfSnapMediaCapture" type="file">
+        <progress value="0" max="100" id="addSurfSnapUploader">0%</progress><br>
+        <button class="btn btn-default btn-sm" id="addSurfSnap" type="button">Preview Photo</button>
+        <input type="hidden" type="text" class="form-control" id="addSurfSnapSavedURL"><br>
+      </div><br><br>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-classic" data-dismiss="modal">Cancel</button>
+        <button class="btn btn-info btn sm" onclick="uploadPhoto()">Upload Photo</button>
       </div>
     </div>
   </div>
+</div>
 
 <!-- gallery -->
 <div class="container">
-  <div class="responsive">
+  <!-- <div class="responsive">
     <div class="gallery">
         <img id="addSurfSnapImagePreview" src="" width="600" height="400"/>
       <div class="desc"><div class="glyphicon glyphicon-heart" id="like5" onClick="clickME()">
       </div><span>  likes <span id="clicks5">0</span></div></span>
     </div>
-  </div>
+  </div> -->
 
   <div class="responsive">
     <div class="gallery">
@@ -197,7 +196,7 @@ var user, name, email, photoUrl, uid, emailVerified;
     var storageRef = firebase.storage().ref();
         
     var file = mediaCapture.files[0];
-    var uploadTask = storageRef.child('file.name').put(file, metadata);
+    var uploadTask = storageRef.child('oceanside/' + file.name).put(file, metadata);
         
     uploadTask.on(firebase.storage.TaskEvent.STATE_CHANGED,
         //tracks progress
@@ -230,44 +229,62 @@ var user, name, email, photoUrl, uid, emailVerified;
         //on completion
         function() {
             var imageURL = uploadTask.snapshot.downloadURL;
-            console.log(imageURL);
             savedURL.value = imageURL;
-            imagePreview.setAttribute("src", imageURL);
+            imagePreview.setAttribute("src", imageURL); 
       });
 }
 
-//download with error handling
-// Create a reference to the file we want to download
-var storageRef = firebase.storage().ref();
-var photoRef = storageRef.child('file.name');
+function uploadPhoto() {
+  alert("SurfSnap Successfully Saved!");
+  window.location = "/beaches/oceanside.html";
+}
 
-// Get the download URL
-photoRef.getDownloadURL().then(function(url) {
-  // Insert url into an <img> tag to "download"
-    var test = url;
-    document.querySelector('img').src = test;
-}).catch(function(error) {
+// Initialize database
+// var database = firebase.database();
 
-  // A full list of error codes is available at
-  // https://firebase.google.com/docs/storage/web/handle-errors
-  switch (error.code) {
-    case 'storage/object_not_found':
-      // File doesn't exist
-      break;
+// var oceansidePhoto = database.ref('oceansidePhoto');
 
-    case 'storage/unauthorized':
-      // User doesn't have permission to access the object
-      break;
+// function uploadPhoto() {
+//   var thisPhoto = oceansidePhoto.child(document.getElementById('oceanside').value.push());
+//   thisPhoto.set({
+//   'oceanside_photo': document.getElementById('addSurfSnapSavedURL').value,
+//   });
+//   alert('SurfSnap Uploaded Successfully!');
+//   window.location = "/beaches/oceanside.html";
+// };
 
-    case 'storage/canceled':
-      // User canceled the upload
-      break;
+// //download with error handling
+// // Create a reference to the file we want to download
+// var storageRef = firebase.storage().ref();
+// var photoRef = storageRef.child('file.name');
 
-    case 'storage/unknown':
-      // Unknown error occurred, inspect the server response
-      break;
-  }
-});
+// // Get the download URL
+// photoRef.getDownloadURL().then(function(url) {
+//   // Insert url into an <img> tag to "download"
+//     var test = url;
+//     document.querySelector('img').src = test;
+// }).catch(function(error) {
+
+//   // A full list of error codes is available at
+//   // https://firebase.google.com/docs/storage/web/handle-errors
+//   switch (error.code) {
+//     case 'storage/object_not_found':
+//       // File doesn't exist
+//       break;
+
+//     case 'storage/unauthorized':
+//       // User doesn't have permission to access the object
+//       break;
+
+//     case 'storage/canceled':
+//       // User canceled the upload
+//       break;
+
+//     case 'storage/unknown':
+//       // Unknown error occurred, inspect the server response
+//       break;
+//   }
+// });
 
   //   firebase.auth().onAuthStateChanged(firebaseUser => {
   //   if (firebaseUser) {
