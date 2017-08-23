@@ -89,13 +89,13 @@ input[type=file] {
     font-family: 'Open Sans', sans-serif;
     font-size: 12px;
 }
-
-label.upload-group {
-  width: 600px;
-  height: 400px;
-  color: white;
-  padding: 5 5 5 5;
-  text-align: center;
+.container {
+  width: 100%;
+  height: 100%;
+  padding-left: 0;
+  padding-right: 0;
+  margin-right: 0;
+  margin-left: 0;
 }
 .contentImage {
   width: 100%;
@@ -104,46 +104,9 @@ label.upload-group {
   width: 100%;
   display: inline-block;
   text-align: center;
-  padding: 8px;
+  padding: 4px;
   font-family: 'Open Sans', sans-serif;
   font-size: 12px;
-  background-color: #9d9d9d;
-  color: black; 
-}
-/*gallery*/
-div.gallery {
-    border: 1px solid #323232;
-    margin: auto;
-}
-div.gallery:hover {
-    border: 1px solid #777;
-}
-div.gallery img {
-    width: 100%;
-    height: auto;
-}
-div.desc {
-    padding: 8px;
-    font-family: Lato;
-    background-color: #323232;
-    color: #d5eaff;   
-}
-* {
-    box-sizing: border-box;
-}
-.responsive {
-    padding: 0 6px;
-    float: left;
-    width: 24.99999%;
-}
-@media only screen and (max-width: 700px){
-    .responsive {
-        width: 49.99999%;
-        margin: 6px 0;
-    }
-}
-@media only screen and (max-width: 500px){
-    .responsive {
-        width: 100%;
-    }
+  background-color: #dceefe;
+  color: #2f2f2f;
 }

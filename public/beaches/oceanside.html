@@ -96,7 +96,7 @@
   </div>
 </div>
 
-<div class="container" id="photoGallery"></div>
+<div class="container" id="photoGallery"></div><br>
 
 <script src="https://www.gstatic.com/firebasejs/4.1.1/firebase-app.js"></script>
 <script src="https://www.gstatic.com/firebasejs/4.1.1/firebase-auth.js"></script>
@@ -233,9 +233,8 @@ function uploadPhoto() {
 $(document).ready(function() {
   firebase.auth().onAuthStateChanged(function(user) {
   if (user) {
-    console.log("hi");
     var token = firebase.auth().currentUser.uid;
-    queryDatabase();
+    queryDatabase(token);
   } else {
     // User is signed out.
     window.location = "index.html";
@@ -243,19 +242,19 @@ $(document).ready(function() {
 });
 });
 
-function queryDatabase() {
+function queryDatabase(token) {
   firebase.database().ref('/photos/oceanside/').once('value').then(function(snapshot) {
     var photoObject = snapshot.val();
-    var keys = Object.keys(photoObject);
+    var keys = Object.keys(photoObject).reverse();
     var currentRow;
-    for (var i = 0; i < keys.length; i++) {
+    for (var i = 0; keys.length; i++) {
       var currentObject = photoObject[keys[i]];
       if (i % 3 === 0) {
         currentRow = document.createElement("div");
         $("#photoGallery").append(currentRow);
       }
       var col = document.createElement("div");
-      $(col).addClass("col-lg-3");
+      $(col).addClass("col-lg-4");
       var image = document.createElement("img");
       image.src = currentObject.url;
       $(image).addClass("contentImage");
