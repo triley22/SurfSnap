@@ -96,8 +96,10 @@
   </div>
 </div>
 
+<div class="container" id="photoGallery"></div>
+
 <!-- gallery -->
-<div class="container">
+<!-- <div class="container"> -->
   <!-- <div class="responsive">
     <div class="gallery">
         <img id="addSurfSnapImagePreview" src="" width="600" height="400"/>
@@ -105,8 +107,8 @@
       </div><span>  likes <span id="clicks5">0</span></div></span>
     </div>
   </div> -->
-
-  <div class="responsive">
+  
+  <!-- <div class="responsive">
     <div class="gallery">
         <img src="https://s4.postimg.org/j2zpfhkjx/tourmaline.jpg" width="600" height="400">
       <div class="desc"><div class="glyphicon glyphicon-heart" id="like1" onClick="clickME1()">
@@ -136,7 +138,7 @@
       <div class="desc"><div class="glyphicon glyphicon-heart" id="like4" onClick="clickME4()">
       </div><span>  likes <span id="clicks4">0</span></div></span>
   </div>
-</div>
+</div> -->
 
 <script src="https://www.gstatic.com/firebasejs/4.1.1/firebase-app.js"></script>
 <script src="https://www.gstatic.com/firebasejs/4.1.1/firebase-auth.js"></script>
@@ -270,88 +272,72 @@ function uploadPhoto() {
   window.location = "/beaches/oceanside.html";
 }
 
-// Initialize database
-// var database = firebase.database();
+$(document).ready(function() {
+  firebase.auth().onAuthStateChanged(function(user) {
+  if (user) {
+    console.log("hi");
+    var token = firebase.auth().currentUser.uid;
+    queryDatabase();
+  } else {
+    // User is signed out.
+    window.location = "index.html";
+  }
+});
+});
 
-// var oceansidePhoto = database.ref('oceansidePhoto');
-
-// function uploadPhoto() {
-//   var thisPhoto = oceansidePhoto.child(document.getElementById('oceanside').value.push());
-//   thisPhoto.set({
-//   'oceanside_photo': document.getElementById('addSurfSnapSavedURL').value,
-//   });
-//   alert('SurfSnap Uploaded Successfully!');
-//   window.location = "/beaches/oceanside.html";
-// };
-
-// //download with error handling
-// // Create a reference to the file we want to download
-// var storageRef = firebase.storage().ref();
-// var photoRef = storageRef.child('file.name');
-
-// // Get the download URL
-// photoRef.getDownloadURL().then(function(url) {
-//   // Insert url into an <img> tag to "download"
-//     var test = url;
-//     document.querySelector('img').src = test;
-// }).catch(function(error) {
-
-//   // A full list of error codes is available at
-//   // https://firebase.google.com/docs/storage/web/handle-errors
-//   switch (error.code) {
-//     case 'storage/object_not_found':
-//       // File doesn't exist
-//       break;
-
-//     case 'storage/unauthorized':
-//       // User doesn't have permission to access the object
-//       break;
-
-//     case 'storage/canceled':
-//       // User canceled the upload
-//       break;
-
-//     case 'storage/unknown':
-//       // Unknown error occurred, inspect the server response
-//       break;
-//   }
-// });
-
-  //   firebase.auth().onAuthStateChanged(firebaseUser => {
-  //   if (firebaseUser) {
-  //     console.log(firebaseUser);
-  //     console.log(firebaseUser.displayName);
-  //     var x = ('Welcome ' + firebaseUser.displayName);
-  //     document.getElementById("welcome").innerHTML = x;
-  //   }   
-  // });
-  var clicks = 0;
-      clicks += 1;
-
-    function clickME() {
-      document.getElementById('clicks5').innerHTML = clicks;
-      document.getElementById('like5').style.color = '#1b65b4';
+function queryDatabase() {
+  firebase.database().ref('/photos/oceanside/').once('value').then(function(snapshot) {
+    var photoObject = snapshot.val();
+    var keys = Object.keys(photoObject);
+    var currentRow;
+    for (var i = 0; i < keys.length; i++) {
+      var currentObject = photoObject[keys[i]];
+      if (i % 3 === 0) {
+        currentRow = document.createElement("div");
+        $("#photoGallery").append(currentRow);
+      }
+      var col = document.createElement("div");
+      $(col).addClass("col-lg-3");
+      var image = document.createElement("img");
+      image.src = currentObject.url;
+      $(image).addClass("contentImage");
+      var paragraph = document.createElement("paragraph");
+      $(paragraph).html(currentObject.caption);
+      $(paragraph).addClass("contentCaption");
+      $(col).append(image);
+      $(col).append(paragraph);
+      $(currentRow).append(col);
     }
+  });
+}
+
+  // var clicks = 0;
+  //     clicks += 1;
+
+  //   function clickME() {
+  //     document.getElementById('clicks5').innerHTML = clicks;
+  //     document.getElementById('like5').style.color = '#1b65b4';
+  //   }
     
-    function clickME1() {
-      document.getElementById('clicks1').innerHTML = clicks;
-      document.getElementById('like1').style.color = '#1b65b4';
-    }
+  //   function clickME1() {
+  //     document.getElementById('clicks1').innerHTML = clicks;
+  //     document.getElementById('like1').style.color = '#1b65b4';
+  //   }
     
-    function clickME2() {
-      document.getElementById('clicks2').innerHTML = clicks;
-      document.getElementById('like2').style.color = '#1b65b4';
-    }
+  //   function clickME2() {
+  //     document.getElementById('clicks2').innerHTML = clicks;
+  //     document.getElementById('like2').style.color = '#1b65b4';
+  //   }
     
-    function clickME3() {
-      document.getElementById('clicks3').innerHTML = clicks;
-      document.getElementById('like3').style.color = '#1b65b4';
-    }
+  //   function clickME3() {
+  //     document.getElementById('clicks3').innerHTML = clicks;
+  //     document.getElementById('like3').style.color = '#1b65b4';
+  //   }
     
-    function clickME4() {
-      document.getElementById('clicks4').innerHTML = clicks;
-      document.getElementById('like4').style.color = '#1b65b4';
-    }
+  //   function clickME4() {
+  //     document.getElementById('clicks4').innerHTML = clicks;
+  //     document.getElementById('like4').style.color = '#1b65b4';
+  //   }
 </script>
 </body>
 </html>

@@ -89,6 +89,27 @@ input[type=file] {
     font-family: 'Open Sans', sans-serif;
     font-size: 12px;
 }
+
+label.upload-group {
+  width: 600px;
+  height: 400px;
+  color: white;
+  padding: 5 5 5 5;
+  text-align: center;
+}
+.contentImage {
+  width: 100%;
+}
+.contentCaption {
+  width: 100%;
+  display: inline-block;
+  text-align: center;
+  padding: 8px;
+  font-family: 'Open Sans', sans-serif;
+  font-size: 12px;
+  background-color: #9d9d9d;
+  color: black; 
+}
 /*gallery*/
 div.gallery {
     border: 1px solid #323232;
