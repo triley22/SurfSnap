@@ -90,7 +90,7 @@
       </div><br><br>
       <div class="modal-footer">
         <button type="button" class="btn btn-classic" data-dismiss="modal">Cancel</button>
-        <button class="btn btn-info btn sm" onclick="uploadPhoto()">Upload Photo</button>
+        <button class="btn btn-info btn sm" id="uploadPhoto" onclick="uploadPhoto()">Upload Photo</button>
       </div>
     </div>
   </div>
@@ -140,28 +140,29 @@ var user, name, email, photoUrl, uid, emailVerified;
    //realtime event listener
    firebase.auth().onAuthStateChanged(firebaseUser => {
     if (firebaseUser) {
-      console.log(firebaseUser);
       console.log(firebaseUser.displayName);
+    } else {
+      console.log("logged out");
     }
   });
 
-    //monitor auth state
+  // monitor auth state
   var auth = firebase.auth();
 
   auth.onAuthStateChanged(function(user) {
     if (user) {
       console.log('Signed In');
       var uid = user.uid;
+      console.log(uid);
     } else {
-      console.log('User Signed Out');
+      window.location = "/index.html";
     }
   });
 
    var metadata = {
       contentType: 'image/jpeg',
       customMetadata: {
-        // 'uploadedBy': uid,
-        'caption': $("#photoCaption").val()
+        'caption': $("#photoCaption").val(),
       },
    };
 
@@ -215,22 +216,21 @@ var user, name, email, photoUrl, uid, emailVerified;
             var postData = {
               url: imageURL,
               caption: $("#photoCaption").val(),
-              // uploadedBy: uid
             };
             updates['/photos/oceanside/' + postKey] = postData;
             firebase.database().ref().update(updates);
-
-            // var photoCaption1 = document.getElementById("photoCaption");
-            // console.log(photoCaption1);
+            //allow user to post to database only when upload is complete
+            $("#uploadPhoto").show();
       });
 }
 
 function uploadPhoto() {
   alert("SurfSnap Successfully Saved!");
-  window.location = "/beaches/oceanside.html";
+  window.location.replace("/beaches/oceanside.html");
 }
 
 $(document).ready(function() {
+  $("#uploadPhoto").hide();
   firebase.auth().onAuthStateChanged(function(user) {
   if (user) {
     var token = firebase.auth().currentUser.uid;
@@ -249,12 +249,12 @@ function queryDatabase(token) {
     var currentRow;
     for (var i = 0; i < keys.length; i++) {
       var currentObject = photoObject[keys[i]];
-      if (i % 3 === 0) {
+      if (i % 2 === 0) {
         currentRow = document.createElement("div");
         $("#photoGallery").append(currentRow);
       }
       var col = document.createElement("div");
-      $(col).addClass("col-lg-4");
+      $(col).addClass("col-lg-6");
       var image = document.createElement("img");
       image.src = currentObject.url;
       $(image).addClass("contentImage");
