@@ -261,40 +261,17 @@ function queryDatabase(token) {
       var paragraph = document.createElement("paragraph");
       $(paragraph).html(currentObject.caption);
       $(paragraph).addClass("contentCaption");
-      $(col).append(image);
-      $(col).append(paragraph);
+      //like button
+      var button = document.createElement("button");
+      $(button).addClass("fa fa-thumbs-o-up fa-lg");
+      $(button).on("click", function(event) {
+        $(this).css('color', '#2f7ec8');
+      });
+      $(col).append(image, button, paragraph);     
       $(currentRow).append(col);
     }
   });
 }
-
-  // var clicks = 0;
-  //     clicks += 1;
-
-  //   function clickME() {
-  //     document.getElementById('clicks5').innerHTML = clicks;
-  //     document.getElementById('like5').style.color = '#1b65b4';
-  //   }
-    
-  //   function clickME1() {
-  //     document.getElementById('clicks1').innerHTML = clicks;
-  //     document.getElementById('like1').style.color = '#1b65b4';
-  //   }
-    
-  //   function clickME2() {
-  //     document.getElementById('clicks2').innerHTML = clicks;
-  //     document.getElementById('like2').style.color = '#1b65b4';
-  //   }
-    
-  //   function clickME3() {
-  //     document.getElementById('clicks3').innerHTML = clicks;
-  //     document.getElementById('like3').style.color = '#1b65b4';
-  //   }
-    
-  //   function clickME4() {
-  //     document.getElementById('clicks4').innerHTML = clicks;
-  //     document.getElementById('like4').style.color = '#1b65b4';
-  //   }
 </script>
 </body>
 </html>
