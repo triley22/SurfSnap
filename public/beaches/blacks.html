@@ -174,7 +174,7 @@ var user, name, email, photoUrl, uid, emailVerified;
     var storageRef = firebase.storage().ref();
         
     var file = mediaCapture.files[0];
-    var uploadTask = storageRef.child('oceanside/' + file.name).put(file, metadata);
+    var uploadTask = storageRef.child('blacks/' + file.name).put(file, metadata);
         
     uploadTask.on(firebase.storage.TaskEvent.STATE_CHANGED,
         //tracks progress
