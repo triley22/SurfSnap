@@ -7,6 +7,6 @@ const functions = require('firebase-functions');
 //  response.send("Hello from Firebase!");
 // });
 
-$( document ).ready(function() {
-    console.log( "ready!" );
-});
+// $( document ).ready(function() {
+//     console.log( "ready!" );
+// });
