@@ -15,5 +15,5 @@ Connect local surfers and photographers in San Diego
 
 Installation
 
-Firebase Version 3.9.2
+Firebase Version 3.9.2,
 jQuery, Bootstrap

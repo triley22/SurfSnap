@@ -48,6 +48,7 @@
               <li><a href="/beaches/pipes.html">Pipes</a></li>
               <li><a href="/beaches/cardiff.html">Cardiff</a></li>
               <li><a href="/beaches/delmar.html">Del Mar</a></li>
+              <li><a href="/beaches/torreypines.html">Torrey Pines State Beach</a></li>
               <li><a href="/beaches/blacks.html">Blacks</a></li>
               <li><a href="/beaches/scripps.html">Scripps</a></li>
               <li><a href="/beaches/windansea.html">WindanSea</a></li>
@@ -56,8 +57,6 @@
               <li><a href="/beaches/tower23.html">Tower 23</a></li>
               <li role="separator" class="divider"></li>
               <li><a href="/beaches/secretspot.html">Secret Spot</a></li>
-              <li role="separator" class="divider"></li>
-              <li><a href="/beaches/surfsnaps.html">All SurfSnaps</a></li>
             </ul>
           </li>
         
@@ -175,7 +174,7 @@ var user, name, email, photoUrl, uid, emailVerified;
     var storageRef = firebase.storage().ref();
         
     var file = mediaCapture.files[0];
-    var uploadTask = storageRef.child('torreypines/' + file.name).put(file, metadata);
+    var uploadTask = storageRef.child('photos/surfsnaps/' + file.name).put(file, metadata);
         
     uploadTask.on(firebase.storage.TaskEvent.STATE_CHANGED,
         //tracks progress
@@ -213,13 +212,18 @@ var user, name, email, photoUrl, uid, emailVerified;
 
             //push to firebase database
             var updates = {};
-            var postKey = firebase.database().ref('photos/').push().key;
+            //all photos
+            var allPhotosPostKey = firebase.database().ref('/photos/').push().key 
+            var allPhotosPostData = {
+              url: imageURL,
+              caption: $('#photoCaption').val(),
+            };
+            updates['/allPhotos/' + allPhotosPostKey] = allPhotosPostData;
+            firebase.database().ref().update(updates);
             var postData = {
               url: imageURL,
               caption: $("#photoCaption").val(),
             };
-            updates['/photos/torreypines/' + postKey] = postData;
-            firebase.database().ref().update(updates);
             //allow user to post to database only when upload is complete
             $("#uploadPhoto").show();
       });
@@ -227,7 +231,7 @@ var user, name, email, photoUrl, uid, emailVerified;
 
 function uploadPhoto() {
   alert("SurfSnap Successfully Saved!");
-  window.location.replace("/beaches/torreypines.html");
+  window.location.replace("/beaches/surfsnaps.html");
 }
 
 $(document).ready(function() {
@@ -244,7 +248,7 @@ $(document).ready(function() {
 });
 
 function queryDatabase(token) {
-  firebase.database().ref('/photos/torreypines/').once('value').then(function(snapshot) {
+  firebase.database().ref('/allPhotos/').once('value').then(function(snapshot) {
     var photoObject = snapshot.val();
     var keys = Object.keys(photoObject).reverse();
     var currentRow;
