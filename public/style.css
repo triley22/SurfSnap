@@ -106,7 +106,7 @@ img.contentImage {
   display: inline-block;
   font-family: 'Open Sans', sans-serif;
   font-size: 16px;
-  background-color: #2f7ec8;
+  background-color: #e9e9e9;
   color: #2f2f2f;
 }
 @media (min-width: 1200px) {
