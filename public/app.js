@@ -104,7 +104,6 @@ var user, name, email, photoUrl, uid, emailVerified;
 }
 
 function uploadPhoto() {
-  alert("SurfSnap Successfully Saved!");
   window.location.replace("/beaches/oceanside.html");
 }
 
