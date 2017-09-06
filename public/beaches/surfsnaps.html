@@ -213,6 +213,7 @@ var user, name, email, photoUrl, uid, emailVerified;
 
             //push to firebase database
             var updates = {};
+            var postKey = firebase.database().ref('photos/').push().key;
             //all photos
             var allPhotosPostKey = firebase.database().ref('/photos/').push().key 
             var allPhotosPostData = {
@@ -225,6 +226,8 @@ var user, name, email, photoUrl, uid, emailVerified;
               url: imageURL,
               caption: $("#photoCaption").val(),
             };
+            updates['/photos/surfsnaps/' + postKey] = postData;
+            firebase.database().ref().update(updates);
             //allow user to post to database only when upload is complete
             $("#uploadPhoto").show();
       });

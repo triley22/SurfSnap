@@ -215,6 +215,14 @@ var user, name, email, photoUrl, uid, emailVerified;
             //push to firebase database
             var updates = {};
             var postKey = firebase.database().ref('photos/').push().key;
+            //all photos
+            var allPhotosPostKey = firebase.database().ref('/photos/').push().key 
+            var allPhotosPostData = {
+              url: imageURL,
+              caption: $('#photoCaption').val(),
+            };
+            updates['/allPhotos/' + allPhotosPostKey] = allPhotosPostData;
+            firebase.database().ref().update(updates);
             var postData = {
               url: imageURL,
               caption: $("#photoCaption").val(),
